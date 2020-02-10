@@ -7,6 +7,8 @@ ruby '2.5.1'
 gem 'rails', '~> 5.2.4', '>= 5.2.4.1'
 gem 'bootstrap-sass', '3.3.7'
 gem 'devise'
+gem 'devise-i18n'
+gem 'devise-i18n-views'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server
