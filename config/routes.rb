@@ -5,8 +5,8 @@ Rails.application.routes.draw do
   get  '/contact', to: 'static_pages#contact'
   get  '/show',    to: 'static_pages#show'
   devise_for :users
-  # resources :users
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'
   end
+  resources :users, only: [:show]
 end
