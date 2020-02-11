@@ -4,9 +4,13 @@ Rails.application.routes.draw do
   get  '/about',   to: 'static_pages#about'
   get  '/contact', to: 'static_pages#contact'
   get  '/show',    to: 'static_pages#show'
-  devise_for :users
+
+  devise_for :users, controllers: {
+    registrations: 'users/registrations',
+    sessions:      'users/sessions'
+  }
+  resources  :users, only: [:show]
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'
   end
-  resources :users, only: [:show]
 end
