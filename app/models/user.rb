@@ -6,7 +6,8 @@ class User < ApplicationRecord
          :recoverable,                      #パスワードリセット処理
          :rememberable,                     #ログイン情報保持処理（Cookieに保存） 
          :validatable                       #メールアドレス、パスワードのバリデーション
-          # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+        #  :lockable
+         # :confirmable, :timeoutable, :trackable and :omniauthable
 
   before_save { email.downcase! }
   validates :name, presence: true, length: { maximum: 50 }

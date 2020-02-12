@@ -1,7 +1,8 @@
 User.create!(name:  "Example User",
              email: "example@railstutorial.org",
              password:              "foobar",
-             password_confirmation: "foobar")
+             password_confirmation: "foobar",
+             admin: true)
 
 #faker作成名を日本語にする
 Faker::Config.locale = :ja
