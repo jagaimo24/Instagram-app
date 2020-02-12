@@ -76,6 +76,8 @@ GEM
     devise-i18n-views (0.3.7)
     erubi (1.9.0)
     execjs (2.7.0)
+    faker (2.10.1)
+      i18n (>= 1.6, < 2)
     ffi (1.12.2)
     formatador (0.2.5)
     globalid (0.4.2)
@@ -135,6 +137,11 @@ GEM
     pry (0.12.2)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
+    pry-byebug (3.8.0)
+      byebug (~> 11.0)
+      pry (~> 0.10)
+    pry-rails (0.3.9)
+      pry (>= 0.10.4)
     puma (3.12.2)
     rack (2.2.1)
     rack-test (1.1.0)
@@ -232,6 +239,7 @@ DEPENDENCIES
   devise
   devise-i18n
   devise-i18n-views
+  faker
   guard (= 2.13.0)
   guard-minitest (= 2.4.4)
   jbuilder (~> 2.5)
@@ -239,6 +247,8 @@ DEPENDENCIES
   listen (>= 3.0.5, < 3.2)
   minitest (= 5.10.3)
   minitest-reporters (= 1.1.14)
+  pry-byebug
+  pry-rails
   puma (~> 3.11)
   rails (~> 5.2.4, >= 5.2.4.1)
   rails-controller-testing (= 1.0.2)

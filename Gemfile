@@ -10,6 +10,9 @@ gem 'devise'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
 gem "jquery-rails"
+gem "pry-rails"
+gem "pry-byebug"
+gem 'faker'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server
