@@ -14,6 +14,7 @@ gem "pry-rails"
 gem "pry-byebug"
 gem 'faker'
 gem 'kaminari'
+gem 'cancancan'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server
