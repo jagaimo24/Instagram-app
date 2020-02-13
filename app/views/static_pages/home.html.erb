@@ -7,6 +7,8 @@
     application.
   </h2>
 
-  <%= link_to "登録する", new_user_registration_path, class: "btn btn-lg btn-primary" %>
-  <p>アカウントをお持ちですか？<%= link_to "ログインする", new_user_session_path %></p>
+  <% unless user_signed_in? %>
+    <%= link_to "登録する", new_user_registration_path, class: "btn btn-lg btn-primary" %>
+    <p>アカウントをお持ちですか？<%= link_to "ログインする", new_user_session_path %></p>
+  <% end %>
 </div>

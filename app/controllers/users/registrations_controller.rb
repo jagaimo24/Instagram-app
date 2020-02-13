@@ -26,7 +26,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # DELETE /resource
   def destroy
     if current_user.admin?
-      
       flash[:error] = "管理者は削除できません"
       redirect_to users_path
     else

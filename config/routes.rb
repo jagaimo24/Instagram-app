@@ -10,8 +10,13 @@ Rails.application.routes.draw do
     sessions:      'users/sessions',
     passwords:     'users/passwords'
   }
+  if Rails.env.development?  
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"  
+  end 
+
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'
   end
+  
   resources  :users, only: [:show, :index, :destroy]
 end
