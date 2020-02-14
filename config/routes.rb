@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'comments/create'
   root 'static_pages#home'
   get  '/help',    to: 'static_pages#help'
   get  '/about',   to: 'static_pages#about'
@@ -19,5 +20,7 @@ Rails.application.routes.draw do
   end
   
   resources  :users, only: [:show, :index, :destroy]
-  resources :microposts, only: [:index, :show, :create]
+  resources :microposts, only: [:index, :show, :create, :destroy] do
+    resources :comments, only: [:create]
+  end
 end

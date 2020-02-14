@@ -10,6 +10,7 @@ class User < ApplicationRecord
          #  :lockable
          # :timeoutable, :trackable and :omniauthable
   has_many :microposts, dependent: :destroy
+  has_many :comments
 
   before_save { email.downcase! }
   validates :name, presence: true, length: { maximum: 50 }
@@ -17,4 +18,9 @@ class User < ApplicationRecord
   validates :email, length: { maximum: 255 },
               format: { with: VALID_EMAIL_REGEX },
               uniqueness: { case_sensitive: false }
+
+  # 試作feedの定義
+  def feed
+    Micropost.where("user_id = ?", id)
+  end
 end
