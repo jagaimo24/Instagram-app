@@ -9,6 +9,7 @@ class User < ApplicationRecord
          :confirmable                       #新規登録時にメール認証機能追加
          #  :lockable
          # :timeoutable, :trackable and :omniauthable
+  has_many :microposts, dependent: :destroy
 
   before_save { email.downcase! }
   validates :name, presence: true, length: { maximum: 50 }

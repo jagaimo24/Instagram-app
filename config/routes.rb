@@ -19,4 +19,5 @@ Rails.application.routes.draw do
   end
   
   resources  :users, only: [:show, :index, :destroy]
+  resources :microposts, only: [:index, :show, :create]
 end
