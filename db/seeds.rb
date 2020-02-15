@@ -2,9 +2,7 @@ User.create!(name:  "Example User",
              email: "example@railstutorial.org",
              password:              "foobar",
              password_confirmation: "foobar",
-             admin: true,
-             activated: true,
-             activated_at: Time.zone.now)
+             admin: true,)
 
 #faker作成名を日本語にする
 Faker::Config.locale = :ja
@@ -16,10 +14,10 @@ Faker::Config.locale = :ja
   User.create!(name:  name,
                email: email,
                password:              password,
-               password_confirmation: password,
-               activated: true,
-               activated_at: Time.zone.now)
-  # マイクロポスト
+               password_confirmation: password,)
+end
+
+# マイクロポスト
 users = User.order(:created_at).take(6)
 50.times do
   content = Faker::Lorem.sentence(5)
@@ -33,4 +31,3 @@ following = users[2..50]
 followers = users[3..40]
 following.each { |followed| user.follow(followed) }
 followers.each { |follower| follower.follow(user) }
-end
