@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :admin_user,     only: :destroy
+  before_action :authenticate_user!, only: [:following, :followers]
+  before_action :admin_user,         only: :destroy
 
   def index
     @users = User.page(params[:page]).per(20)
@@ -14,6 +15,20 @@ class UsersController < ApplicationController
     User.find(params[:id]).destroy
     flash[:success] = "削除しました"
     redirect_to users_url
+  end
+
+  def following
+    @title = "フォロー"
+    @user  = User.find(params[:id])
+    @users = @user.following.page(params[:page]).per(20)
+    render 'show_follow'
+  end
+
+  def followers
+    @title = "フォロワー"
+    @user  = User.find(params[:id])
+    @users = @user.followers.page(params[:page]).per(20)
+    render 'show_follow'
   end
 
   private

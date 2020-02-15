@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   get  '/help',    to: 'static_pages#help'
   get  '/about',   to: 'static_pages#about'
   get  '/contact', to: 'static_pages#contact'
-  get  '/show',    to: 'static_pages#show'
 
   devise_for :users, controllers: {
     registrations: 'users/registrations',
@@ -24,9 +23,9 @@ Rails.application.routes.draw do
       get :following, :followers
     end
   end
-  resources  :users,         only: [:show, :index, :destroy]
-  resources :microposts,     only: [:index, :show, :create, :destroy] do
+  resources   :users,         only: [:show, :index, :destroy]
+  resources   :microposts,     only: [:index, :show, :create, :destroy] do
     resources :comments,     only: [:create]
   end
-  resources :relationships,  only: [:create, :destroy]
+  resources   :relationships,  only: [:create, :destroy]
 end
