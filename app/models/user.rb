@@ -27,9 +27,12 @@ class User < ApplicationRecord
               format: { with: VALID_EMAIL_REGEX },
               uniqueness: { case_sensitive: false }
 
-  # 試作feedの定義
+  # ユーザーのステータスフィードを返す
   def feed
-    Micropost.where("user_id = ?", id)
+    following_ids = "SELECT followed_id FROM relationships
+                      WHERE follower_id = :user_id"
+    Micropost.where("user_id IN (#{following_ids})
+                      OR user_id = :user_id", user_id: id)
   end
 
   # ユーザーをフォローする
@@ -45,5 +48,13 @@ class User < ApplicationRecord
   # 現在のユーザーがフォローしてたらtrueを返す
   def following?(other_user)
     following.include?(other_user)
+  end
+
+  def self.search(search)
+    if search
+      where(['name LIKE ?', "%#{search}%"]) #検索とuseanameの部分一致を表示。
+    else
+      all 
+    end
   end
 end

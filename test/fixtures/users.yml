@@ -7,3 +7,12 @@ michael:
 archer:
   name: Sterling Archer
   email: duchess@example.gov
+
+lana:
+  name: Lana Kane
+  email: hands@example.gov
+
+malory:
+  name: Malory Archer
+  email: boss@example.gov
+

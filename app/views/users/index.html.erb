@@ -4,6 +4,7 @@
 <%= paginate @users %>
 
 <ul class="users">
+  <%= render "layouts/search" %>
   <% @users.each do |user| %>
     <%= render user %>
   <% end %>
