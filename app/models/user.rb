@@ -6,9 +6,10 @@ class User < ApplicationRecord
          :recoverable,                      #パスワードリセット処理
          :rememberable,                     #ログイン情報保持処理（Cookieに保存） 
          :validatable,                      #メールアドレス、パスワードのバリデーション
-         :confirmable                       #新規登録時にメール認証機能追加
+         :confirmable,                       #新規登録時にメール認証機能追加
+         :omniauthable
          #  :lockable
-         # :timeoutable, :trackable and :omniauthable
+         # :timeoutable, :trackable and 
   has_many :microposts, dependent: :destroy
   has_many :active_relationships, class_name:  "Relationship",
                                   foreign_key: "follower_id",
@@ -18,8 +19,7 @@ class User < ApplicationRecord
                                   dependent:   :destroy
   has_many :following, through: :active_relationships,  source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
-  has_many :likes, dependent: :destroy
-  has_many :comments
+  has_many :likes,    dependent: :destroy
 
   before_save { email.downcase! }
   validates :name, presence: true, length: { maximum: 50 }
@@ -57,5 +57,22 @@ class User < ApplicationRecord
     else
       all 
     end
+  end
+
+  def self.find_for_oauth(auth)
+    user = User.where(uid: auth.uid, provider: auth.provider).first
+ 
+    unless user
+      user = User.create(
+        uid:      auth.uid,
+        provider: auth.provider,
+        name:  auth.info.name,
+        email:    auth.info.email,
+        password: Devise.friendly_token[0, 20],
+        image:  auth.info.image
+      )
+    end
+ 
+    user
   end
 end

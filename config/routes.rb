@@ -4,8 +4,9 @@ Rails.application.routes.draw do
   get  '/about',   to: 'static_pages#about'
   get  '/contact', to: 'static_pages#contact'
   get  '/search',  to: 'search#search'
-
+  
   devise_for :users, controllers: {
+    omniauth_callbacks: 'users/omniauth_callbacks',
     registrations: 'users/registrations',
     sessions:      'users/sessions',
     passwords:     'users/passwords'
@@ -13,7 +14,7 @@ Rails.application.routes.draw do
   if Rails.env.development?  
     mount LetterOpenerWeb::Engine, at: "/letter_opener"  
   end 
-
+  
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'
   end
@@ -24,9 +25,7 @@ Rails.application.routes.draw do
     end
   end
   resources   :users,         only: [:show, :index, :destroy]
-  resources   :microposts,     only: [:index, :show, :create, :destroy] do
-    resources :comments,     only: [:create]
-  end
+  resources   :microposts,     only: [:index, :show, :create, :destroy]
   resources   :relationships,  only: [:create, :destroy]
   resources   :likes, only: [:create, :destroy]
 end

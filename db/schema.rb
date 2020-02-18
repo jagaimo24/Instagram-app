@@ -10,17 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_17_090008) do
-
-  create_table "comments", force: :cascade do |t|
-    t.string "content"
-    t.integer "user_id"
-    t.integer "micropost_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["micropost_id"], name: "index_comments_on_micropost_id"
-    t.index ["user_id"], name: "index_comments_on_user_id"
-  end
+ActiveRecord::Schema.define(version: 2020_02_18_073157) do
 
   create_table "likes", force: :cascade do |t|
     t.integer "user_id"
@@ -67,6 +57,9 @@ ActiveRecord::Schema.define(version: 2020_02_17_090008) do
     t.datetime "updated_at", null: false
     t.string "name"
     t.boolean "admin", default: false
+    t.string "uid"
+    t.string "image"
+    t.string "provider"
   end
 
 end
