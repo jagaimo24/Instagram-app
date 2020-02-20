@@ -12,5 +12,8 @@
                                        data: { confirm: "You sure?" } %>
     <% end %>
   </span>
-  <%= render "likes/likes", micropost: micropost %>
+  <section class="like">
+    <%= render "likes/likes", micropost: micropost %>
+  </section>
+  <%= link_to  "コメントする", micropost %>
 </li>

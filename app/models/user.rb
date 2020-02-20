@@ -6,10 +6,11 @@ class User < ApplicationRecord
          :recoverable,                      #パスワードリセット処理
          :rememberable,                     #ログイン情報保持処理（Cookieに保存） 
          :validatable,                      #メールアドレス、パスワードのバリデーション
-         :confirmable,                       #新規登録時にメール認証機能追加
+         :confirmable,                      #新規登録時にメール認証機能追加
          :omniauthable
-         #  :lockable
-         # :timeoutable, :trackable and 
+         # :lockable
+         # :timeoutable, 
+         # :trackable and 
   has_many :microposts, dependent: :destroy
   has_many :active_relationships, class_name:  "Relationship",
                                   foreign_key: "follower_id",
@@ -20,7 +21,7 @@ class User < ApplicationRecord
   has_many :following, through: :active_relationships,  source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
   has_many :likes,    dependent: :destroy
-
+  has_many :comments, dependent: :destroy
   before_save { email.downcase! }
   validates :name, presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -53,7 +54,7 @@ class User < ApplicationRecord
 
   def self.search(search)
     if search
-      where(['name LIKE ?', "%#{search}%"]) #検索とuseanameの部分一致を表示。
+      where(['name LIKE ?', "%#{search}%"]) #検索とnameの部分一致を表示。
     else
       all 
     end

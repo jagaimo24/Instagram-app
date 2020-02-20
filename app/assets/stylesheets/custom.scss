@@ -10,6 +10,12 @@ $gray-medium-light: #eaeaea;
   -webkit-box-sizing: border-box;
   box-sizing:         border-box;
 }
+@font-face {
+  font-family: "HaloHandletter";
+  src: asset_url('/assets/HaloHandletter.otf') format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
 /* universal */
 
 body {
@@ -277,4 +283,8 @@ span.picture {
 
 #search{
   margin: 10px;
+}
+
+.title{
+  font-family: "HaloHandletter";
 }
