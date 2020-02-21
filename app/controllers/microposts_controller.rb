@@ -7,7 +7,7 @@ class MicropostsController < ApplicationController
 
   def show
     @micropost = Micropost.find(params[:id])
-    @comments = @micropost.comments
+    @comments = @micropost.comments.page(params[:page]).per(20)
     @comment = @micropost.comments.build
   end
 

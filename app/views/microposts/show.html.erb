@@ -1,22 +1,25 @@
-<div class="comment-wrapper border-top　mb-10">
-  <p class="mt-5">コメント一覧</p>
+
+<div class="comment-wrapper border-top　mb-10 col-md-8">
+  <h3 class="mt-5">コメント一覧</h3>
   <% @comments.each do |c| %>
-    <div>
+    <div class="comment">
       <% unless c.user.blank? %>
-        <a href="<%= user_path(c.user_id) %>"><%= image_tag c.user.image.to_s,
-          class:"rounded-circle icon_image mr-3 mb-3"%></a>
-        <% end %>
+        <%= link_to gravatar_for(c.user, size: 10), user_path(c.user) %>
+      <% end %>
       <%= c.user.name unless c.user.blank? %>
       <br />
       <%= c.content %>
       <% if c.user == current_user %>
-      <p><%= link_to 'コメントを削除する', micropost_comment_path(c.micropost_id, c.id), method: :delete %></p>
+        <p><%= link_to 'コメントを削除する', micropost_comment_path(c.micropost_id, c.id), method: :delete %></p>
       <% end %>
     </div>
     <br />
   <% end %>
-  </div>
-  <div>
+</div>
+
+<%= paginate @comments %>
+
+<div>
   <% if user_signed_in? %>
     <%= form_with(model: [@micropost, @comment], local: true) do |f| %>
       <%= f.text_area :content, class: "form-control", rows: 5 %>
