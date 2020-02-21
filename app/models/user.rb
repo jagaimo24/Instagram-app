@@ -30,6 +30,7 @@ class User < ApplicationRecord
   validates :email, length: { maximum: 255 },
               format: { with: VALID_EMAIL_REGEX },
               uniqueness: { case_sensitive: false }
+  validates :profile, presence: true, length: { maximum: 160 }
 
   # ユーザーのステータスフィードを返す
   def feed

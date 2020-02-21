@@ -10,16 +10,19 @@
     <section class="stats">
       <%= render 'shared/stats' %>
     </section>
+    <section class="profile">
+      <%= @user.profile %>
+    </section>
+    <%= link_to 'プロフィール変更', edit_user_registration_path %>
   </aside>
   <div class="col-md-8 post-col">
     <%= render 'follow_form' if user_signed_in? %>
     <% if @user.microposts.any? %>
-      <h3>Microposts (<%= @user.microposts.count %>)</h3>
+      <h3><%= @user.microposts.count %><small class="text-muted"> 投稿</small></h3>
       <ol class="microposts">
         <%= render @microposts %>
       </ol>
       <%= paginate @microposts %>
     <% end %>
-    <%= link_to 'プロフィール変更', edit_user_registration_path %>
   </div>
 </div>
