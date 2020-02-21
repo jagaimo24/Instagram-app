@@ -1,5 +1,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
 
 /* mixins, variables, etc. */
 
@@ -287,4 +289,13 @@ span.picture {
 
 .title{
   font-family: "HaloHandletter";
+}
+
+.n-circle{
+  position: absolute;
+  padding-left: 1rem;
+  padding-top: 0rem;
+  color: #efa04c;
+  top: 10px;
+  left: 30px;
 }

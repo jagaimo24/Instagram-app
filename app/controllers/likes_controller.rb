@@ -6,6 +6,7 @@ class LikesController < ApplicationController
     unless @micropost.like?(current_user)
       @micropost.like(current_user)
       @micropost.reload
+      @micropost.create_notification_like!(current_user)
       respond_to do |format|
         format.html { redirect_to request.referrer || root_url }
         format.js

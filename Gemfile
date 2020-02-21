@@ -21,6 +21,7 @@ gem 'mini_magick'
 gem 'counter_culture', '~> 1.8'
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'font-awesome-sass'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server
