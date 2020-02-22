@@ -5,7 +5,8 @@ class ApplicationController < ActionController::Base
   protected
     def configure_permitted_parameters
       # 新規登録時にパラメーターを追加で許可する
-      added_attrs = [ :email, :name, :password, :password_confirmation, :micropost, :follower_id, :followed_id, :comment, :profile ]
+      added_attrs = [ :email, :name, :user_name, :password, :password_confirmation, 
+          :micropost, :follower_id, :followed_id, :comment, :profile, :gender, :phone ]
       devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
       devise_parameter_sanitizer.permit :account_update, keys: added_attrs
       devise_parameter_sanitizer.permit :sign_in, keys: added_attrs

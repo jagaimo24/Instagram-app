@@ -26,11 +26,15 @@ ja:
     attributes:
       user:
         name: "名前"
+        user_name: "ユーザー名"
         current_password: "現在のパスワード"
         email: "メールアドレス"
         password: "パスワード"
         password_confirmation: "確認用パスワード"
         remember_me: "ログインを記憶"
+        profile: "自己紹介"
+        gender: "性別"
+        phone: "電話番号"
     models:
       user: "ユーザ"
   devise:

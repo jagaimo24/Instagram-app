@@ -6,6 +6,7 @@
         <%= gravatar_for @user %>
         <%= @user.name %>
       </h1>
+      <p>ユーザー名：<%= @user.user_name %></p>
     </section>
     <section class="stats">
       <%= render 'shared/stats' %>
@@ -13,13 +14,15 @@
     <section class="profile">
       <%= @user.profile %>
     </section>
-    <%= link_to 'プロフィール変更', edit_user_registration_path %>
+    <% if current_user.admin? || current_user.id == @user.id %>
+      <%= link_to 'プロフィール変更', edit_user_registration_path %>
+    <% end %>
   </aside>
   <div class="col-md-8 post-col">
     <%= render 'follow_form' if user_signed_in? %>
     <% if @user.microposts.any? %>
       <h3><%= @user.microposts.count %><small class="text-muted"> 投稿</small></h3>
-      <ol class="microposts">
+      <ol class="microposts my-micropost">
         <%= render @microposts %>
       </ol>
       <%= paginate @microposts %>

@@ -31,6 +31,8 @@ class User < ApplicationRecord
               format: { with: VALID_EMAIL_REGEX },
               uniqueness: { case_sensitive: false }
   validates :profile, presence: true, length: { maximum: 160 }
+  validates :phone, format: {with: /\A[0-9]{3}-[0-9]{4}-[0-9]{4}\z/}
+  enum gender: { man: 1, woman: 2 }
 
   # ユーザーのステータスフィードを返す
   def feed
