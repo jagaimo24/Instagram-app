@@ -75,8 +75,8 @@ p {
   font-size: 1.7em;
   color: white;
   text-transform: uppercase;
-  letter-spacing: -1px;
-  padding-top: 9px;
+  letter-spacing: 1px;
+  padding-top: 20px;
   font-weight: bold;
   &:hover {
     color: white;
@@ -252,6 +252,7 @@ input {
   .content {
     display: block;
     margin-left: 60px;
+    font-weight: bold;
     img {
       display: block;
       padding: 5px 0;

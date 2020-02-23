@@ -1,10 +1,10 @@
 require 'test_helper'
 
 class FollowingTest < ActionDispatch::IntegrationTest
-  def setup
-    @user = users(:michael)
-    current_user = @user
-  end
+  # def setup
+  #   @user = users(:michael)
+  #   current_user = @user
+  # end
 
   # test "following page" do
   #   get following_user_path(@user)
