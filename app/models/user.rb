@@ -30,8 +30,8 @@ class User < ApplicationRecord
   validates :email, length: { maximum: 255 },
               format: { with: VALID_EMAIL_REGEX },
               uniqueness: { case_sensitive: false }
-  validates :profile, presence: true, length: { maximum: 160 }
-  validates :phone, format: {with: /\A[0-9]{3}-[0-9]{4}-[0-9]{4}\z/}
+  validates :profile, presence: true, length: { maximum: 160 }, allow_nil: true
+  validates :phone, format: {with: /\A[0-9]{3}-[0-9]{4}-[0-9]{4}\z/}, allow_nil: true
   enum gender: { man: 1, woman: 2 }
 
   # ユーザーのステータスフィードを返す
