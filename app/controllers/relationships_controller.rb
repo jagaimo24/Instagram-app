@@ -3,7 +3,6 @@ class RelationshipsController < ApplicationController
     @user = User.find(params[:followed_id])
     current_user.follow(@user)
     @user.create_notification_follow!(current_user)
-    #ブロック内のコードのうち、いずれかの1行が実行される
     respond_to do |format|
       format.html { redirect_to @user }
       format.js
