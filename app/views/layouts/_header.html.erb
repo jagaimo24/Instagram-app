@@ -4,17 +4,15 @@
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <li><%= render "layouts/search" %></li>
-        <li><%= link_to "Home",   root_path %></li>
-        <li><%= link_to "Help",   help_path %></li>
+        <li><%= link_to "",   root_path, class:"fas fa-home fa-2x" %></li>
         <% if user_signed_in? %>
-          <li><%= link_to "Users", users_path %></li>
-          <li><%= link_to "MyPage", current_user %></li>
           <li class="notification">
-            <%= link_to '通知', notifications_path, class:"btn"  %>
+            <%= link_to "", notifications_path, class:"btn fas fa-heart fa-2x"  %>
               <% if unchecked_notifications.any? %>
                 <i class= "fa fa-circle n-circle"></i>
               <% end %>
           </li>
+          <li><%= link_to gravatar_for(current_user, size: 40), current_user, style:"padding: 6px;" %></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               Account <b class="caret"></b>

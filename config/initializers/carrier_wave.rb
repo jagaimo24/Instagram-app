@@ -1,13 +1,11 @@
 if Rails.env.production?
   CarrierWave.configure do |config|
     config.fog_credentials = {
-      provider: 'AWS',
-      region: 'ap-northeast-1',
-      aws_access_key_id: 'AKIA2EMMD6ROMIV42G7N',
-      aws_secret_access_key: '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'
+      :provider              => 'AWS',
+      :region                => ENV['S3_REGION'],
+      :aws_access_key_id     => ENV['S3_ACCESS_KEY'],
+      :aws_secret_access_key => ENV['S3_SECRET_KEY']
     }
-
-    config.fog_directory  = 'rails-insta-sample'
-    config.cache_storage = :fog
+    config.fog_directory     =  ENV['S3_BUCKET']
   end
 end

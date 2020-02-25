@@ -1,27 +1,33 @@
 <% provide(:title, @user.name) %>
-<div class="row">
-  <aside class="col-md-4">
-    <section class="user_info">
-      <h1>
-        <%= gravatar_for @user %>
+<div class="row user_info">
+  <div class="col-md-12">
+    <div class="user-img col-md-4">
+      <%= gravatar_for @user, size:100 %>
+    </div>
+    <section class="col-md-8">
+      <div>
+        <h1 class="user-name">
+          <%= @user.user_name %>
+        </h1>
+          <% if current_user.admin? || current_user.id == @user.id %>
+            <%= link_to 'プロフィールを編集', edit_user_registration_path, class:"btn btn-light" %>
+          <% end %>
+      </div>
+      <ul class="col-md-8 stats">
+        <li class="stat"><%= @user.microposts.count if @user.microposts.any? %>投稿</li>
+        <%= render 'shared/stats' %>
+      </ul>
+    </section>
+      <div>
         <%= @user.name %>
-      </h1>
-      <p>ユーザー名：<%= @user.user_name %></p>
-    </section>
-    <section class="stats">
-      <%= render 'shared/stats' %>
-    </section>
-    <section class="profile">
-      <%= @user.profile %>
-    </section>
-    <% if current_user.admin? || current_user.id == @user.id %>
-      <%= link_to 'プロフィール変更', edit_user_registration_path %>
-    <% end %>
-  </aside>
+        <%= @user.profile %>
+      </div>
+  </div>
+</div>
+<div class="row">
   <div class="col-md-8 post-col">
     <%= render 'follow_form' if user_signed_in? %>
     <% if @user.microposts.any? %>
-      <h3><%= @user.microposts.count %><small class="text-muted"> 投稿</small></h3>
       <ol class="microposts my-micropost">
         <%= render @microposts %>
       </ol>
