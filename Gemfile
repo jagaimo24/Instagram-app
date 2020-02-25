@@ -17,6 +17,7 @@ gem 'faker'
 gem 'kaminari'
 gem 'cancancan'
 gem 'carrierwave'
+gem 'fog'
 gem 'mini_magick'
 gem 'counter_culture', '~> 1.8'
 gem 'omniauth'
@@ -53,7 +54,6 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 group :production do
   gem 'pg'
-  gem 'fog'
 end
 
 group :development, :test do
