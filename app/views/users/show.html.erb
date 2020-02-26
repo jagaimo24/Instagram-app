@@ -1,0 +1,37 @@
+<% provide(:title, @user.name) %>
+<div class="row user_info">
+  <div class="col-md-12">
+    <div class="user-img col-md-4">
+      <%= gravatar_for @user, size:100 %>
+    </div>
+    <section class="col-md-8">
+      <div>
+        <h1 class="user-name">
+          <%= @user.user_name %>
+        </h1>
+        <% if current_user.admin? || current_user.id == @user.id %>
+          <%= link_to 'プロフィールを編集', edit_user_registration_path, class:"btn btn-light" %>
+        <% end %>
+        <p><%= render 'follow_form' if user_signed_in? %></p>
+      </div>
+      <ul class="col-md-8 stats">
+        <li class="stat"><%= @user.microposts.count if @user.microposts.any? %>投稿</li>
+        <%= render 'shared/stats' %>
+      </ul>
+    </section>
+      <div>
+        <%= @user.name %>
+        <%= @user.profile %>
+      </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-8 post-col">
+    <% if @user.microposts.any? %>
+      <ol class="microposts my-micropost">
+        <%= render @microposts %>
+      </ol>
+      <%= paginate @microposts %>
+    <% end %>
+  </div>
+</div>

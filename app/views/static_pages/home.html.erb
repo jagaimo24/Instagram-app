@@ -1,0 +1,26 @@
+<% if user_signed_in? %>
+  <div class="row">
+    <div class="col-md-8">
+      <%= render 'shared/feed' %>
+    </div>
+    <aside class="col-md-4">
+      <section class="user_info">
+        <%= render 'shared/user_info' %>
+      </section>
+      <section class="micropost_form">
+        <%= render 'shared/micropost_form' %>
+      </section>
+    </aside>
+  </div>
+<% else %>
+<div class="center jumbotron">
+  <h1 class = "title">Potestagram</h1>
+
+  <% unless user_signed_in? %>
+    <p><%= link_to  "Facebookでログイン", user_facebook_omniauth_authorize_path, class: "btn btn-lg btn-primary" %></p>
+    <p><%= link_to "登録する", new_user_registration_path, class: "btn btn-lg btn-primary "%></p>
+    <h5>アカウントをお持ちですか？</h5>
+    <%= link_to "ログインする", new_user_session_path %>
+  <% end %>
+</div>
+<% end %>

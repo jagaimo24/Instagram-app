@@ -1,0 +1,37 @@
+<header class="navbar navbar-fixed-top navbar-inverse">
+  <div class="container">
+    <%= link_to "Potestagram", root_path, id: "logo", class: "title"%>
+    <nav>
+      <ul class="nav navbar-nav navbar-right">
+        <li><%= render "layouts/search" %></li>
+        <li><%= link_to "",   root_path, class:"fas fa-home fa-2x" %></li>
+        <% if user_signed_in? %>
+          <li class="notification">
+            <%= link_to "", notifications_path, class:"btn fas fa-heart fa-2x"  %>
+              <% if unchecked_notifications.any? %>
+                <i class= "fa fa-circle n-circle"></i>
+              <% end %>
+          </li>
+          <li><%= link_to gravatar_for(current_user, size: 40), current_user, style:"padding: 6px;" %></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              Account <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li>
+                <%= link_to 'プロフィール変更', edit_user_registration_path %>
+              </li>
+              <li>
+                <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+              </li>
+            </ul>
+          </li>
+        <% else %>
+          <li><%= link_to '新規登録', new_user_registration_path %></li>
+          <li><%= link_to 'ログイン', new_user_session_path %></li>
+        <% end %>
+      </ul>
+    </nav>
+  </div>
+</header>

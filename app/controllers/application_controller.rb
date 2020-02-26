@@ -1,2 +1,19 @@
 class ApplicationController < ActionController::Base
+  before_action :authenticate_user!, only: [:index, :show, :update, :destroy]
+  before_action :configure_permitted_parameters, if: :devise_controller?
+
+  protected
+    def configure_permitted_parameters
+      # 新規登録時にパラメーターを追加で許可する
+      added_attrs = [ :email, :name, :user_name, :password, :password_confirmation, 
+          :micropost, :follower_id, :followed_id, :comment, :profile, :gender, :phone ]
+      devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
+      devise_parameter_sanitizer.permit :account_update, keys: added_attrs
+      devise_parameter_sanitizer.permit :sign_in, keys: added_attrs
+    end
+
+    # ログイン後のリダイレクト先
+    def after_sign_in_path_for(resource)
+      user_path(resource.id)
+    end
 end

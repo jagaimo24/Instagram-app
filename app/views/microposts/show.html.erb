@@ -1,0 +1,30 @@
+<div class="comment-wrapper border-top　mb-10 col-md-8">
+  <h3 class="mt-5">コメント一覧</h3>
+  <% @comments.each do |comment| %>
+    <div class="comment">
+      <% unless comment.user.blank? %>
+        <%= link_to gravatar_for(comment.user, size: 30), user_path(comment.user) %>
+      <% end %>
+      <%= comment.user.name unless comment.user.blank? %>
+      <br />
+      <%= comment.content %>
+      <% if comment.user == current_user %>
+        <p><%= link_to 'コメントを削除する', micropost_comment_path(comment.micropost_id, comment.id), method: :delete %></p>
+      <% end %>
+    </div>
+    <br />
+  <% end %>
+</div>
+
+<%= paginate @comments %>
+
+<div>
+  <% if user_signed_in? %>
+    <%= form_with(model: [@micropost, @comment], local: true) do |f| %>
+      <%= f.text_area :content, class: "form-control", rows: 5 %>
+      <%= button_tag type: "submit", class: "btn btn-success float-right mt-1" do %>
+        <i class="far fa-comments"></i> コメントする
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

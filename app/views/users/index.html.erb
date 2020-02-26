@@ -1,0 +1,13 @@
+<% provide(:title, 'All users') %>
+<h1>ユーザ一覧</h1>
+
+<%= paginate @users %>
+
+<ul class="users">
+  <%= render "layouts/search" %>
+  <% @users.each do |user| %>
+    <%= render user %>
+  <% end %>
+</ul>
+
+<%= paginate @users %>
