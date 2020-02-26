@@ -10,6 +10,7 @@ class Micropost < ApplicationRecord
 
   validates  :user_id, presence: true
   validates  :content, presence: true, length: { maximum: 140 }, allow_blank: true
+  validates  :picture, presence: true
   validate   :picture_size
 
   def like(user)

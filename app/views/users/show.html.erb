@@ -9,9 +9,10 @@
         <h1 class="user-name">
           <%= @user.user_name %>
         </h1>
-          <% if current_user.admin? || current_user.id == @user.id %>
-            <%= link_to 'プロフィールを編集', edit_user_registration_path, class:"btn btn-light" %>
-          <% end %>
+        <% if current_user.admin? || current_user.id == @user.id %>
+          <%= link_to 'プロフィールを編集', edit_user_registration_path, class:"btn btn-light" %>
+        <% end %>
+        <p><%= render 'follow_form' if user_signed_in? %></p>
       </div>
       <ul class="col-md-8 stats">
         <li class="stat"><%= @user.microposts.count if @user.microposts.any? %>投稿</li>
@@ -26,7 +27,6 @@
 </div>
 <div class="row">
   <div class="col-md-8 post-col">
-    <%= render 'follow_form' if user_signed_in? %>
     <% if @user.microposts.any? %>
       <ol class="microposts my-micropost">
         <%= render @microposts %>

@@ -150,6 +150,7 @@ aside {
 .gravatar {
   float: left;
   margin-right: 10px;
+	border-radius: 50%;
 }
 
 .gravatar_edit {
@@ -194,9 +195,6 @@ aside {
       text-decoration: none;
       color: blue;
     }
-  }
-  strong {
-    display: block;
   }
 }
 
@@ -272,7 +270,6 @@ input {
   }
   .content {
     display: block;
-    margin-left: 60px;
     font-weight: bold;
     img {
       display: block;
@@ -345,4 +342,12 @@ span.picture {
 
 .header-mypage {
   padding: 5px;
+}
+
+.micropost-header{
+  overflow: hidden;
+}
+
+.home-content img{
+  width: 80%;
 }
