@@ -4,9 +4,9 @@ Rails.application.routes.draw do
   
   devise_for :users, controllers: {
     omniauth_callbacks: 'users/omniauth_callbacks',
-    registrations: 'users/registrations',
-    sessions:      'users/sessions',
-    passwords:     'users/passwords'
+    registrations:      'users/registrations',
+    sessions:           'users/sessions',
+    passwords:          'users/passwords'
   }
   if Rails.env.development?  
     mount LetterOpenerWeb::Engine, at: "/letter_opener"  
@@ -27,5 +27,5 @@ Rails.application.routes.draw do
     end
   resources   :relationships,  only: [:create, :destroy]
   resources   :likes,          only: [:create, :destroy]
-  resources :notifications,    only: :index
+  resources   :notifications,  only: :index
 end

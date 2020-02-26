@@ -1,15 +1,15 @@
 <div class="comment-wrapper border-top　mb-10 col-md-8">
   <h3 class="mt-5">コメント一覧</h3>
-  <% @comments.each do |c| %>
+  <% @comments.each do |comment| %>
     <div class="comment">
-      <% unless c.user.blank? %>
-        <%= link_to gravatar_for(c.user, size: 30), user_path(c.user) %>
+      <% unless comment.user.blank? %>
+        <%= link_to gravatar_for(comment.user, size: 30), user_path(comment.user) %>
       <% end %>
-      <%= c.user.name unless c.user.blank? %>
+      <%= comment.user.name unless comment.user.blank? %>
       <br />
-      <%= c.content %>
-      <% if c.user == current_user %>
-        <p><%= link_to 'コメントを削除する', micropost_comment_path(c.micropost_id, c.id), method: :delete %></p>
+      <%= comment.content %>
+      <% if comment.user == current_user %>
+        <p><%= link_to 'コメントを削除する', micropost_comment_path(comment.micropost_id, comment.id), method: :delete %></p>
       <% end %>
     </div>
     <br />

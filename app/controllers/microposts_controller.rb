@@ -19,7 +19,7 @@ class MicropostsController < ApplicationController
       redirect_to root_url
     else
       @feed_items = []
-      render 'static_pages/home'
+      render root_path
     end
   end
 
@@ -30,11 +30,9 @@ class MicropostsController < ApplicationController
   end
 
   private
-
     def micropost_params
       params.require(:micropost).permit(:content, :picture)
     end
-
 
     def correct_user
       @micropost = current_user.microposts.find_by(id: params[:id])
