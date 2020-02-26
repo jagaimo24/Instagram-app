@@ -3,7 +3,7 @@
   <% @comments.each do |c| %>
     <div class="comment">
       <% unless c.user.blank? %>
-        <%= link_to gravatar_for(c.user, size: 10), user_path(c.user) %>
+        <%= link_to gravatar_for(c.user, size: 30), user_path(c.user) %>
       <% end %>
       <%= c.user.name unless c.user.blank? %>
       <br />

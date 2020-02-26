@@ -3,6 +3,21 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
+  def destroy
+    if current_user.admin?
+      flash[:error] = "管理者は削除できません"
+      redirect_to users_path
+    else
+      super
+    end
+  end
+
+  protected
+    # アカウント編集後、プロフィール画面に移動する
+    def after_update_path_for(resource)
+      user_path(id: current_user.id)
+    end
+    
   # GET /resource/sign_up
   # def new
   #   super
@@ -12,7 +27,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def create
   #   super
   # end
-
+  
   # GET /resource/edit
   # def edit
   #   super
@@ -23,15 +38,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # DELETE /resource
-  def destroy
-    if current_user.admin?
-      flash[:error] = "管理者は削除できません"
-      redirect_to users_path
-    else
-      super
-    end
-  end
 
   # GET /resource/cancel
   # Forces the session data which is usually expired after sign
@@ -42,11 +48,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  protected
-    # アカウント編集後、プロフィール画面に移動する
-    def after_update_path_for(resource)
-      user_path(id: current_user.id)
-    end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params
